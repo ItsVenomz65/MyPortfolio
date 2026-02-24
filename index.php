@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>ME · retro portfolio + CD player + robot eyes</title>
-  <!-- Font Awesome 6 (free) for icons -->
+  <title>Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ---------- black & white palette + subtle animations ---------- */
     * {
       margin: 0;
       padding: 0;
@@ -28,7 +26,6 @@
       cursor: auto;
     }
 
-    /* video background – muted, looping, grayscale to match retro aesthetic */
     #bg-video {
       position: fixed;
       top: 0;
@@ -41,7 +38,6 @@
       pointer-events: none;
     }
 
-    /* dark overlay for readability & blending */
     body::after {
       content: '';
       position: fixed;
@@ -54,7 +50,6 @@
       pointer-events: none;
     }
 
-    /* main card – slightly transparent so video/overlay interact */
     .retro-card {
       max-width: 700px;
       width: 100%;
@@ -71,7 +66,6 @@
       backdrop-filter: blur(1px);
     }
 
-    /* moving scanline effect */
     .retro-card::before {
       content: "";
       position: absolute;
@@ -278,7 +272,6 @@
       transition: none;
     }
 
-    /* ADDED SPACING FOR PARAGRAPHS IN CAROUSEL */
     .carousel-item p {
       margin-bottom: 1rem;
     }
@@ -341,7 +334,6 @@
       border-bottom: 1px solid #ccc;
     }
 
-    /* footer */
     .footer {
       display: flex;
       align-items: center;
@@ -413,7 +405,6 @@
       50% { opacity: 1; }
     }
 
-    /* subtle overlay flicker */
     .retro-card::after {
       content: "";
       position: absolute;
@@ -434,7 +425,6 @@
       75% { opacity: 0.18; }
     }
 
-    /* GLITCH TEXT (for discord link) */
     .glitch-text {
       position: relative;
       color: #ddd;
@@ -478,7 +468,6 @@
       100% { clip-path: inset(20% 0 30% 0); }
     }
 
-    /* MODAL (error 404) */
     .modal {
       display: none;
       position: fixed;
@@ -528,7 +517,6 @@
       color: #fff;
     }
 
-    /* ---------- ROBOT EYES (in footer) ---------- */
     .footer-robot {
       display: inline-flex;
       flex-direction: column;
@@ -578,26 +566,25 @@
       border-radius: 50%;
     }
 
-    /* ---------- CD PLAYER (outside container, top left) with slide-out panel connected ---------- */
     .cd-player-outside {
       position: fixed;
       top: 20px;
       left: 20px;
       z-index: 2000;
       display: flex;
-      align-items: stretch; /* make children same height */
+      align-items: stretch; 
       filter: drop-shadow(4px 4px 0 #000);
     }
     .cd-icon-wrapper {
       background: #1a1a1a;
       border: 2px solid #777;
-      border-right: none; /* remove right border so panel connects seamlessly */
+      border-right: none; 
       width: 70px;
       height: 70px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: none; /* shadow applied to parent */
+      box-shadow: none; 
       transition: border-color 0.2s;
     }
     .cd-icon-wrapper:hover {
@@ -621,18 +608,18 @@
       overflow: hidden;
       background: #222;
       border: 2px solid #777;
-      border-left: none; /* remove left border to connect */
+      border-left: none; 
       box-shadow: none;
       transition: width 0.3s ease-out;
       white-space: nowrap;
-      height: 70px; /* match icon wrapper height */
+      height: 70px; 
       display: flex;
       align-items: center;
       gap: 8px;
       padding: 0;
     }
     .cd-player-outside:hover .cd-panel {
-      width: 300px; /* enough to show content */
+      width: 300px; 
       padding: 0 10px;
     }
     .song-info {
@@ -687,7 +674,6 @@
 <body>
   <video autoplay loop muted playsinline id="bg-video" src="Shizuku.mp4"></video>
 
-  <!-- CD Player outside container, top left with slide-out panel connected -->
   <div class="cd-player-outside" id="cdPlayerOutside">
     <div class="cd-icon-wrapper">
       <i class="fas fa-compact-disc cd-icon-outside" id="cdIconOutside"></i>
@@ -719,7 +705,6 @@
 
     <div class="name"><i class="fas fa-gamepad"></i> >  Future Game_Dev</div>
 
-    <!-- CAROUSEL -->
     <div class="carousel-container">
       <div class="carousel-nav">
         <button class="nav-arrow" id="arrowPrev"><i class="fas fa-chevron-left"></i></button>
@@ -762,7 +747,6 @@
       </div>
     </div>
 
-    <!-- FOOTER with robot and blocks (CD player removed from here) -->
     <div class="footer">
       <div class="footer-left">
         <!-- Silly robot -->
@@ -788,7 +772,6 @@
     </div>
   </div>
 
-  <!-- MODAL -->
   <div id="errorModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -800,7 +783,6 @@
 
   <script>
     (function() {
-      // Carousel
       const items = document.querySelectorAll('.carousel-item');
       const prevBtn = document.getElementById('arrowPrev');
       const nextBtn = document.getElementById('arrowNext');
@@ -898,7 +880,6 @@
         });
       }
 
-      // Modal for discord link
       const modal = document.getElementById('errorModal');
       const discordLink = document.getElementById('discordLink');
       const closeBtn = document.querySelector('.close');
@@ -914,7 +895,6 @@
         window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       }
 
-      // Robot eyes follow cursor
       const pupilLeft = document.getElementById('pupilLeft');
       const pupilRight = document.getElementById('pupilRight');
       const robot = document.getElementById('footerRobot');
@@ -942,17 +922,14 @@
         }, { passive: true });
       }
 
-      // CD Player audio (outside)
-      // User can replace these with their own music files (place in same folder)
-      // Add your songs here: Consume.mp3 and any others
       const songs = [
         'Consume.mp3',
         'Untitled.mp3',
         'Hell_or_flying.mp3'
-      ]; // <-- REPLACE WITH YOUR FILES
+      ]; 
       let currentSong = 0;
       let audio = new Audio();
-      audio.volume = 0.5; // Set volume to 50%
+      audio.volume = 0.5; 
       audio.src = songs[currentSong];
       audio.loop = false;
 
@@ -961,14 +938,12 @@
       const prevBtnCD = document.getElementById('prevBtnOutside');
       const nextBtnCD = document.getElementById('nextBtnOutside');
       const songTitleSpan = document.getElementById('currentSongTitle');
-      const songArtistSpan = document.getElementById('currentSongArtist'); // optional
+      const songArtistSpan = document.getElementById('currentSongArtist'); 
 
       function updateSongTitle() {
-        // Extract filename without extension
         let fullName = songs[currentSong];
         let name = fullName.substring(0, fullName.lastIndexOf('.')) || fullName;
         songTitleSpan.textContent = name;
-        // You can also set artist or other metadata here if available
       }
       updateSongTitle();
 
@@ -999,7 +974,6 @@
           updateSongTitle();
         });
 
-        // When song ends, go to next
         audio.addEventListener('ended', () => {
           currentSong = (currentSong + 1) % songs.length;
           audio.src = songs[currentSong];
